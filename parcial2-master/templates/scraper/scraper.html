@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Scraper Gamer{% endblock %}
+
+{% block content %}
+
+<style>
+    .scraper-box {
+        background: rgba(10, 20, 35, 0.6);
+        padding: 25px;
+        border-radius: 12px;
+        backdrop-filter: blur(6px);
+        box-shadow: 0 0 12px #0ff;
+    }
+
+    .scraper-box h2 {
+        text-shadow: 0 0 10px #0ff;
+        font-weight: bold;
+        color: #00eaff;
+    }
+</style>
+
+<div class="scraper-box mt-4">
+    <h2 class="text-center">🔍 Scraper Gamer</h2>
+
+    <form method="POST" class="mt-3">
+        {% csrf_token %}
+        <label class="form-label text-light">Ingresa una URL para scrapear:</label>
+        <input type="text" name="url" class="form-control bg-dark text-light border-info" placeholder="https://ejemplo.com">
+        <button class="btn btn-info mt-3 w-100">Scrapear</button>
+    </form>
+
+    {% if data %}
+    <div class="mt-4">
+        <h4 class="text-info">Resultado:</h4>
+        <pre class="bg-dark text-success p-3 rounded" style="max-height: 500px; overflow-y: auto;">
+{{ data }}
+        </pre>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
+

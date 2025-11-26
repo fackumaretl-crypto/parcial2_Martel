@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard Gamer{% endblock %}
+
+{% block content %}
+
+<style>
+    .table-gamer {
+        background: rgba(0, 20, 35, 0.6);
+        color: #d8faff;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid rgba(0, 255, 255, 0.2);
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.15);
+    }
+
+    .table-gamer thead {
+        background: rgba(0, 255, 255, 0.15);
+        color: #00eaff;
+        text-shadow: 0 0 8px #00eaff;
+    }
+
+    .btn-neon {
+        background: linear-gradient(90deg, #00eaff, #0077ff);
+        border: none;
+        font-weight: bold;
+        color: #000;
+        border-radius: 8px;
+        box-shadow: 0 0 10px #00eaff;
+        transition: .2s;
+    }
+    .btn-neon:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px #00eaff;
+    }
+
+    .action-btn {
+        background: rgba(0, 255, 255, 0.1);
+        padding: 6px 12px;
+        border-radius: 8px;
+        color: #00eaff;
+        font-weight: bold;
+        transition: .2s;
+    }
+    .action-btn:hover {
+        background: rgba(0, 255, 255, .25);
+        color: white;
+        transform: scale(1.05);
+    }
+</style>
+
+<h2 class="text-center mb-4" style="color:#00eaff; text-shadow:0 0 10px #00eaff;">📘 Dashboard Gamer</h2>
+
+<div class="text-end mb-3">
+    <a href="{% url 'estudiantes:create' %}" class="btn-neon">+ Agregar Alumno</a>
+</div>
+
+{% if alumnos %}
+<div class="table-responsive">
+    <table class="table table-gamer text-center">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Carrera</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for alumno in alumnos %}
+            <tr>
+                <td>{{ alumno.nombre }}</td>
+                <td>{{ alumno.email }}</td>
+                <td>{{ alumno.carrera }}</td>
+                <td>{{ alumno.fecha_creacion }}</td>
+                <td>
+                    <a href="{% url 'estudiantes:edit' alumno.id %}" class="action-btn">Editar</a>
+                    <a href="{% url 'estudiantes:delete' alumno.id %}" class="action-btn">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% else %}
+<p class="text-light text-center">No hay alumnos registrados todavía.</p>
+{% endif %}
+
+{% endblock %}

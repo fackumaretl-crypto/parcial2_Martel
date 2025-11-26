@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Eliminar Alumno{% endblock %}
+
+{% block content %}
+
+<style>
+    .delete-box {
+        background: rgba(40, 0, 0, 0.4);
+        border: 1px solid rgba(255, 0, 0, 0.4);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(255, 0, 0, .3);
+        color: #ffb3b3;
+    }
+
+    .btn-delete {
+        background: red;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: none;
+        width: 100%;
+        font-weight: bold;
+        box-shadow: 0 0 15px red;
+        transition: .2s;
+    }
+    .btn-delete:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px red;
+    }
+
+    .btn-cancel {
+        margin-top: 10px;
+        width: 100%;
+        background: rgba(255, 255, 255, .1);
+        color: #00eaff;
+        border-radius: 10px;
+        padding: 10px;
+        text-align: center;
+        display: inline-block;
+    }
+</style>
+
+<h2 class="text-center" style="color: red; text-shadow:0 0 15px red;">⚠️ Confirmar Eliminación</h2>
+
+<div class="delete-box mt-4">
+    <p>¿Seguro que deseas eliminar <strong>{{ alumno.nombre }}</strong>?</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button class="btn-delete">Eliminar</button>
+    </form>
+
+    <a href="{% url 'estudiantes:dashboard' %}" class="btn-cancel">Cancelar</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Formulario Gamer{% endblock %}
+
+{% block content %}
+
+<style>
+    .form-gamer {
+        background: rgba(15, 25, 40, 0.6);
+        padding: 30px;
+        border-radius: 15px;
+        border: 1px solid rgba(0, 255, 255, 0.2);
+        box-shadow: 0 0 15px rgba(0, 255, 255, .15);
+    }
+
+    .form-label {
+        color: #00eaff;
+        text-shadow: 0 0 6px #00eaff;
+        font-weight: bold;
+    }
+
+    .form-control {
+        background: rgba(0, 20, 35, .7);
+        border: 1px solid #00eaff;
+        color: #d9faff;
+        border-radius: 10px;
+    }
+
+    .btn-neon {
+        background: linear-gradient(90deg, #00eaff, #0077ff);
+        border: none;
+        font-weight: bold;
+        color: #000;
+        border-radius: 10px;
+        padding: 10px;
+        width: 100%;
+        margin-top: 10px;
+        box-shadow: 0 0 12px #00eaff;
+    }
+    .btn-neon:hover {
+        box-shadow: 0 0 20px #00eaff;
+        transform: scale(1.02);
+    }
+</style>
+
+<h2 class="text-center mb-4" style="color:#00eaff; text-shadow:0 0 10px #00eaff;">
+    {{ title }}
+</h2>
+
+<div class="form-gamer">
+    
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button class="btn-neon">Guardar</button>
+    </form>
+
+</div>
+
+{% endblock %}
